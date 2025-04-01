@@ -18,7 +18,9 @@ class JobListingSerializer(serializers.ModelSerializer):
     company_name = serializers.CharField(write_only=True)  
     # company_id = serializers.IntegerField(write_only=True)  # Changed to write_only for input
     company = CompanySerializer(read_only=True)  # Still read_only for output
-
+    skills_required = serializers.ListField(
+        child=serializers.CharField()  # This ensures the skills_required field is a list of strings
+    )
     class Meta:
         model = JobListing
         fields = [

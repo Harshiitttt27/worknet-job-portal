@@ -308,7 +308,7 @@ const ProfilePage = () => {
 
       try {
         setLoading(true);
-        const response = await fetch('http://127.0.0.1:8000/users/profile/', {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/profile/`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -351,7 +351,7 @@ const ProfilePage = () => {
 
     const authToken = localStorage.getItem('auth_token');
     try {
-      const response = await fetch('http://127.0.0.1:8000/users/profile/', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/profile/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -390,7 +390,8 @@ const ProfilePage = () => {
       setLoading(true);
 
       try {
-        const response = await fetch(`http://127.0.0.1:8000/users/delete/${userId}/`, {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/delete/${userId}/`, {
+
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${authToken}`,

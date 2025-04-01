@@ -25,7 +25,8 @@ const PostJobPage = () => {
     const checkAdminStatus = async () => {
       try {
         // API call to check the user's role
-        const response = await axios.get('http://127.0.0.1:8000/users/users/check-role/', {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/users/check-role/`, {
+        
           headers: {
             Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
           },
@@ -61,7 +62,7 @@ const PostJobPage = () => {
     const jobData = {
       title: jobTitle,
       description: jobDescription,
-      skills_required: skillsRequired.split(',').map((skill) => skill.trim()),
+      skills_required: skillsRequired.split(',').map((skill) => skill.trim()),  // Keep it as an array of skills
       location: location,
       experience_required: experienceRequired,
       status: status,
@@ -75,11 +76,18 @@ const PostJobPage = () => {
     };
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/jobs/createjob', jobData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('auth_token')}`, // Assuming you're using JWT
-        },
-      });
+      
+      const token = localStorage.getItem('auth_token');
+if (!token) {
+  setError('You are not authenticated.');
+  return;
+}
+
+const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/jobs/createjob`, jobData, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
 
       if (response.status === 201) {
         setSuccessMessage('Job posted successfully!');

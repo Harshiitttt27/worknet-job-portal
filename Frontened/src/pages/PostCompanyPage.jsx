@@ -18,7 +18,7 @@ const PostCompanyPage = () => {
     // Fetch user role to check if the user is an admin
     const checkUserRole = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/users/users/check-role/', {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/users/check-role/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
           },
@@ -55,7 +55,10 @@ const PostCompanyPage = () => {
   
     try {
       // Try to create the company first
-      const response = await axios.post('http://127.0.0.1:8000/jobs/companies', companyData, {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/jobs/companies`, 
+        companyData,
+        {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
         },
@@ -76,7 +79,10 @@ const PostCompanyPage = () => {
           };
   
           try {
-            const jobResponse = await axios.post('http://127.0.0.1:8000/jobs/', jobData, {
+            const jobResponse = await axios.post(
+              `${import.meta.env.VITE_API_BASE_URL}/jobs/`, // Dynamically constructed URL
+              jobData, 
+             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
               },

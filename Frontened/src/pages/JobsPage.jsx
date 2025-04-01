@@ -104,7 +104,9 @@ const JobsPage = () => {
       }
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/jobs/job-listings', {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/jobs/job-listings`, // Dynamic URL using the environment variable
+          {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${authToken}`,

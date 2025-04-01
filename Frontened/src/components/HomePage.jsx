@@ -10,11 +10,10 @@ const HomePage = () => {
   // Fetch the featured jobs from the API
   useEffect(() => {
     const fetchFeaturedJobs = async () => {
+      const baseUrl = import.meta.env.VITE_API_BASE_URL; // Access the base URL from .env file in Vite
       try {
-        // Fetch jobs without any Authorization header
-        const response = await fetch('http://127.0.0.1:8000/jobs/job-listings', {
+        const response = await fetch(`${baseUrl}/jobs/job-listings`, {
           method: 'GET',
-          // No Authorization header, this ensures featured jobs are displayed whether logged in or not
         });
 
         if (response.ok) {

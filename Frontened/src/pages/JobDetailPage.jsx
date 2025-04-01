@@ -18,7 +18,9 @@ const JobDetailPage = () => {
       }
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/jobs/job-listings', {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/jobs/job-listings`, // Dynamic URL using the environment variable
+          {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -54,7 +56,9 @@ const JobDetailPage = () => {
     }
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/jobs/jobs/${jobId}/apply/`, {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/jobs/jobs/${jobId}/apply/`, // Dynamic URL using environment variable for the base URL
+        {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${authToken}`,
@@ -107,13 +111,19 @@ const JobDetailPage = () => {
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold text-indigo-600">Skills Required:</h3>
-            <ul className="list-disc pl-6 space-y-1 text-gray-700">
-              {job?.skills_required?.map((skill, index) => (
-                <li key={index}>{skill}</li>
-              ))}
-            </ul>
-          </div>
+
+  <h3 className="text-xl font-semibold text-indigo-600">Skills Required:</h3>
+  <ul className="list-disc pl-6 space-y-1 text-gray-700">
+    {Array.isArray(job?.skills_required) ? (
+      job?.skills_required.map((skill, index) => (
+        <li key={index}>{skill}</li>
+      ))
+    ) : (
+      <li>No skills required listed</li> // Fallback if it's not an array
+    )}
+  </ul>
+</div>
+
 
           <div>
             <h3 className="text-xl font-semibold text-indigo-600">Experience Required:</h3>

@@ -17,7 +17,9 @@ const CompanyDetailPage = () => {
       }
   
       try {
-        const response = await fetch(`http://127.0.0.1:8000/jobs/companies/${companyId}/`, {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/jobs/companies/${companyId}/`, // Dynamic URL using environment variable
+          {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${authToken}`,

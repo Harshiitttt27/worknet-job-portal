@@ -16,7 +16,9 @@ function ContactPage() {
     };
 
     // Make a POST request to your Django backend to submit the contact form
-    fetch('http://127.0.0.1:8000/users/contact/', {
+    fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/users/contact/`, // Dynamically use the base URL from env variable
+      {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
