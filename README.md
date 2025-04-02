@@ -1,4 +1,4 @@
-# Job Portal Project
+# WORKNET
 
 Welcome to the Worknet ! This is a web application that connects job seekers with potential employers, making job search and application process easier.
 
@@ -73,14 +73,11 @@ To run this project locally, follow these steps:
 ### Prerequisites
 
 - Node.js (>= 14.x)
+- react.js
+- tailwind
 - npm (>= 6.x)
+- postgreesql (database)
 - Python 3.x (for backend)
 - Django (for backend)
+- Postman (for testing API endpoints)
 
-### Backend Setup
-
-1. Navigate to the `Backend` directory.
-2. Install the required Python packages:
-
-   ```bash
-   pip install -r requirements.txt
